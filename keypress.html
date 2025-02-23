@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <div id="navbar"></div>
+    <script>document.addEventListener('DOMContentLoaded', () => {
+     fetch('navBar.html')
+         .then(response => response.text())
+         .then(data => {
+             document.getElementById('navbar').innerHTML = data;
+         });
+ });</script>
+    <title>Displaying Keypresses</title>
+    <script type="text/javascript">
+    function displayKey(e) {
+       // which key was pressed?
+       if (e.keyCode) {
+          var keycode=e.keyCode;
+       }  else {
+          var keycode=e.which;
+       }
+       character=String.fromCharCode(keycode);
+        if("aeiou".includes(character.toLowerCase())){
+            character = character.toUpperCase();
+        }
+       // find the object for the destination paragraph
+       var keysParagraph = document.getElementById('keys');
+
+       // add the character to the paragraph
+       keysParagraph.innerHTML += character;
+    }
+    document.addEventListener('keydown',function(event){
+        if(event.key === 'r'){
+            document.body.style.backgroundColor = 'Red';
+        }
+        if(event.key === 'R'){
+            document.body.style.backgroundColor = 'Red';
+        }
+        if (event.key === 'g'){
+            document.body.style.backgroundColor = 'Green';
+        }
+        if (event.key === 'G'){
+            document.body.style.backgroundColor = 'Green';
+        }
+        if (event.key === 'b'){
+            document.body.style.backgroundColor = 'Blue';
+        }
+        if (event.key === 'B'){
+            document.body.style.backgroundColor = 'Blue';
+        }
+    });
+    </script>
+  </head>
+  <body onkeypress="displayKey(event)">
+    <h1>Displaying Typed Characters</h1>
+    <p>This document includes a simple script that displays
+    the keys you type as a new paragraph below. Type a few keys
+    to try it. </p>
+    <div id="keys"></div>
+  </body>
+</html>
